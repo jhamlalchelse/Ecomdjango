@@ -1,0 +1,19 @@
+.owl-carousel .item{
+ font-size: 24px;
+ text-align: center;
+ margin-top: 20px;;
+}
+.owl-next{
+ float:right;
+}
+.owl-prev{
+ float:left;
+}
+.owl-prev span{
+ font-size: 24px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 24px;
+ font-weight: bold;
+}

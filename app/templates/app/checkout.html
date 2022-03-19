@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row mt-5">
+  <div class="col-sm-6">
+    <h4>Order Summary</h4>
+    <hr>
+    {% for citem in cart_product %}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5>Product: {{citem.product.title}}</h5>
+          <p>Quantity: {{citem.quantity}}</p>
+          <p class="fw-bold">Price: {{citem.total_cost}}</p>
+        </div>
+      </div>
+      {% endfor %}
+      <p class="fw-bold fs-4">Total Cost + Rs. 70 = {{total_amount }}</p>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1">
+    <h4>Select Shipping Address</h4>
+    <hr>
+    <form action="/paymentdone">
+    {% for add in add %}
+      <div class="card">
+        <div class="card-body">
+        <h5>{{add.name}}</h5>
+        <p>{{add.locality}} {{add.city}}, {{add.state}} {{add.zipcode}}</p>
+        </div>
+      </div>
+        <div class="form-check mt-2 mb-5">
+          <input class="form-check-input" type="radio" value="{{add.id}}" id="add{{forloop.counter}}" name="custid" checked="checked">
+          <label class="form-check-label fw-bold" for="add{{forloop.counter}}">
+            Address: {{forloop.counter}} </label>
+        </div>
+      {% endfor %}
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-warning mb-3 px-5 fw-bold">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

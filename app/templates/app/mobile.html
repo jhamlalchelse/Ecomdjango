@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<link rel="stylesheet" href="{% static 'app/css/abcd.css' %}">
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+   <ul class="list-group w-75 mt-2">
+    <a class="text-decoration-none" href="/mobile"><li class="list-group-item abc {% if  datavalue == Null%}bg-primary text-light{% endif %}">All Mobiles</li></a>
+    <a class="text-decoration-none" href="Redmi"><li class="list-group-item abc {% if  datavalue == 'Redmi'%}bg-primary text-light{% endif %}">Redmi</li></a>
+    <a class="text-decoration-none" href="Realme"><li class="list-group-item abc {% if  datavalue == 'Realme'%}bg-primary text-light{% endif %}">Realme</li></a>
+    <a class="text-decoration-none" href="Oneplus"><li class="list-group-item abc {% if  datavalue == 'Oneplus'%} bg-primary text-light{% endif %}">One plus</li></a>
+    <a class="text-decoration-none" href="Samsung"><li class="list-group-item abc {% if  datavalue == 'Samsung'%} bg-primary text-light{% endif %}">Samsung</li></a>
+    <a class="text-decoration-none" href="Below"><li class="list-group-item abc {% if  datavalue == 'Below'%} bg-primary text-light{% endif %}">Price Below 20000</li></a>
+    <a class="text-decoration-none" href="Range"><li class="list-group-item abc {% if  datavalue == 'Range'%} bg-primary text-light{% endif %}">Price 20000-30000</li></a>
+    <a class="text-decoration-none" href="Above"><li class="list-group-item abc {% if  datavalue == 'Above'%} bg-primary text-light{% endif %}">Price Above 30000</li></a>
+  </ul>
+
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+      <div class="row">
+          {% for b in mobiles %}
+          <div class="col-sm-4 text-center mb-5">
+            <a href="{% url 'product-detail'  b.id%}" class="btn">
+                <div class="item">
+                  <img src="{{b.product_image.url}}" alt="" height="200px" width="250px">
+                  <span class="fw-bold">{{b.title}}</span><br><span class="fs-5">{{b.discount_price}}</span>
+                </div>
+            </a>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
